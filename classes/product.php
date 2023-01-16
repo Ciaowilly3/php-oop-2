@@ -88,7 +88,7 @@ class Cibo extends Prodotto{
      */ 
     public function getPerSterilizzati()
     {
-        return $this->perSterilizzati ? "sì" : "no";
+        return $this->perSterilizzati;
     }
 
     /**

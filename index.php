@@ -5,11 +5,12 @@ $prodotti= [
     new Prodotto("anti-pulci", 15.99, "Entrambi"),
     new Cibo("umido", true, "Lattina tuna & crab", 4.99, "gatti"),
     new Cibo("secco", false, "croccantini per cagnolini", 2.99, "cani"),
+    new Cibo("secco", true, "dentastix", 5, "cani"),
     new Giochi("plastica", "topo paxxerrello", 4, "gatti"),
     new Giochi("peluche", "cane per cani", 12.50,"cani"),
     new Cucce("stoffa", "piccola", "cuccetta per animali", 5,"entrambi"),
     new Cucce("stoffa", "media", "cuccia per animali", 10,"entrambi"),
-    new Cucce("stoffa", "grande", "cucciona per animali", 15,"cani"),
+    new Cucce("pelle di lontra", "grande", "cucciona per animali", 150,"cani"),
 ]
 
 ?>
@@ -29,6 +30,32 @@ $prodotti= [
     <body class="bg-dark">
         <div class="container">
             <h1 class="text-center text-primary mb-5">Pet Store, Pet stories</h1>
+            <div class="row gy-5">
+            <?php foreach ($prodotti as $prodotto ) {
+
+            ?>
+                <div class="col-4">
+                    <div class="col-container d-flex justify-content-center">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="https://picsum.photos/200/100" alt="immagine">
+                            <div class="card-body">
+                                <h5 class="card-title"> <?php echo $prodotto->getNome() ?> </h5>
+                                <h6>
+                                    Prodotto per: <?php echo $prodotto->getCategoria() ?>,  
+                                    Prezzo: <?php echo $prodotto->getPrezzo() ?> $
+                                </h6>
+                                <span> <?php echo (method_exists($prodotto, "getTipo") ? "Tipo di alimento: " . $prodotto->getTipo() : '') ?></span>
+                                <span> <?php echo (method_exists($prodotto, "getPerSterilizzati") ?
+                                (($prodotto->getPerSterilizzati()) ? "Adatto per sterilizzati" : "non adatto per sterilizzati") : "") ?> </span>
+                                <span"><?php echo method_exists($prodotto, "getMateriale") ? "Materiale del prodotto: " . $prodotto->getMateriale() : "" ?></span>
+                                <span><?php echo method_exists($prodotto, "getDimensioni") ? "Cuccia di dimensioni: ". $prodotto->getDimensioni() : "" ?> </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+            </div>
         </div>
         <!-- <script src="js/main.js"></script> -->
     </body>
