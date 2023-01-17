@@ -1,8 +1,10 @@
 <?php
+
+require_once __DIR__ . "/Category.php";
 class Prodotto {
     protected string $nome;
     protected  float $prezzo;
-    protected string $categoria;
+    protected Category $categoria;
     
     function __construct($_nome, $_prezzo, $_categoria)
     {

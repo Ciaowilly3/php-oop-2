@@ -1,16 +1,21 @@
 <?php
 require_once "./classes/product.php";
+require_once "./classes/Category.php";
+
+$gatti = new Category("gatti");
+$cani = new Category("cani");
+$entrambi = new Category("entrambi");
 
 $prodotti= [
-    new Prodotto("anti-pulci", 15.99, "Entrambi"),
-    new Cibo("umido", true, "Lattina tuna & crab", 4.99, "gatti"),
-    new Cibo("secco", false, "croccantini per cagnolini", 2.99, "cani"),
-    new Cibo("secco", true, "dentastix", 5, "cani"),
-    new Giochi("plastica", "topo paxxerrello", 4, "gatti"),
-    new Giochi("peluche", "cane per cani", 12.50,"cani"),
-    new Cucce("stoffa", "piccola", "cuccetta per animali", 5,"entrambi"),
-    new Cucce("stoffa", "media", "cuccia per animali", 10,"entrambi"),
-    new Cucce("pelle di lontra", "grande", "cucciona per animali", 150,"cani"),
+    new Prodotto("anti-pulci", 15.99, $entrambi),
+    new Cibo("umido", true, "Lattina tuna & crab", 4.99, $gatti),
+    new Cibo("secco", false, "croccantini per cagnolini", 2.99, $cani),
+    new Cibo("secco", true, "dentastix", 5, $cani),
+    new Giochi("plastica", "topo paxxerrello", 4, $gatti),
+    new Giochi("peluche", "cane per cani", 12.50,$cani),
+    new Cucce("stoffa", "piccola", "cuccetta per animali", 5,$entrambi),
+    new Cucce("stoffa", "media", "cuccia per animali", 10,$entrambi),
+    new Cucce("pelle di lontra", "grande", "cucciona per animali", 150,$cani),
 ]
 
 ?>
@@ -41,10 +46,12 @@ $prodotti= [
                             <div class="card-body">
                                 <h5 class="card-title"> <?php echo $prodotto->getNome() ?> </h5>
                                 <h6>
-                                    Prodotto per: <?php echo $prodotto->getCategoria() ?>,  
+                                    Prodotto per: <?php echo $prodotto->getCategoria()->getName() ?>,
+                                </h6>
+                                <h6>  
                                     Prezzo: <?php echo $prodotto->getPrezzo() ?> $
                                 </h6>
-                                <span> <?php echo (method_exists($prodotto, "getTipo") ? "Tipo di alimento: " . $prodotto->getTipo() : '') ?></span>
+                                <div> <?php echo (method_exists($prodotto, "getTipo") ? "Tipo di alimento: " . $prodotto->getTipo() : '') ?></div>
                                 <span> <?php echo (method_exists($prodotto, "getPerSterilizzati") ?
                                 (($prodotto->getPerSterilizzati()) ? "Adatto per sterilizzati" : "non adatto per sterilizzati") : "") ?> </span>
                                 <span"><?php echo method_exists($prodotto, "getMateriale") ? "Materiale del prodotto: " . $prodotto->getMateriale() : "" ?></span>
